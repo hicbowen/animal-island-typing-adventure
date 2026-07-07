@@ -482,7 +482,7 @@ export default function App() {
                     />
                     <Collapse
                         question="有关于词汇和游戏的建议?"
-                        answer={<div className="help-answer">联系西瓜老师，欢迎你向他提出你的想法。</div>}
+                        answer={<div className="help-answer">当前词汇为 Python 与 AI 相关词汇，如有建议请联系西瓜老师，欢迎你向他提出你的想法。</div>}
                     />
                 </div>
             </Drawer>
