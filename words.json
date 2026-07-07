@@ -1,0 +1,750 @@
+[
+    {
+        "word": "print",
+        "explanation": "输出；把内容显示在屏幕上"
+    },
+    {
+        "word": "input",
+        "explanation": "输入；接收用户输入的内容"
+    },
+    {
+        "word": "variable",
+        "explanation": "变量；用来保存数据"
+    },
+    {
+        "word": "value",
+        "explanation": "值；变量中保存的内容"
+    },
+    {
+        "word": "name",
+        "explanation": "名称；常用于变量名和对象名"
+    },
+    {
+        "word": "data",
+        "explanation": "数据；程序处理的信息"
+    },
+    {
+        "word": "number",
+        "explanation": "数字；表示数值数据"
+    },
+    {
+        "word": "string",
+        "explanation": "字符串；表示文本数据"
+    },
+    {
+        "word": "integer",
+        "explanation": "整数；没有小数部分的数字"
+    },
+    {
+        "word": "float",
+        "explanation": "浮点数；表示带小数的数字"
+    },
+    {
+        "word": "boolean",
+        "explanation": "布尔值；表示真或假"
+    },
+    {
+        "word": "true",
+        "explanation": "真；表示条件成立"
+    },
+    {
+        "word": "false",
+        "explanation": "假；表示条件不成立"
+    },
+    {
+        "word": "list",
+        "explanation": "列表；按顺序保存多个数据"
+    },
+    {
+        "word": "tuple",
+        "explanation": "元组；保存一组不可随意修改的数据"
+    },
+    {
+        "word": "dictionary",
+        "explanation": "字典；使用键和值保存数据"
+    },
+    {
+        "word": "set",
+        "explanation": "集合；保存不重复的数据"
+    },
+    {
+        "word": "key",
+        "explanation": "键；用于在字典中查找数据"
+    },
+    {
+        "word": "index",
+        "explanation": "索引；表示数据在序列中的位置"
+    },
+    {
+        "word": "item",
+        "explanation": "元素；列表或集合中的一个数据"
+    },
+    {
+        "word": "if",
+        "explanation": "如果；用于进行条件判断"
+    },
+    {
+        "word": "else",
+        "explanation": "否则；条件不成立时执行"
+    },
+    {
+        "word": "elif",
+        "explanation": "否则如果；继续判断新的条件"
+    },
+    {
+        "word": "condition",
+        "explanation": "条件；决定程序是否执行某段代码"
+    },
+    {
+        "word": "compare",
+        "explanation": "比较；判断两个数据之间的关系"
+    },
+    {
+        "word": "equal",
+        "explanation": "相等；判断两个值是否一样"
+    },
+    {
+        "word": "and",
+        "explanation": "并且；多个条件同时成立"
+    },
+    {
+        "word": "or",
+        "explanation": "或者；多个条件满足一个即可"
+    },
+    {
+        "word": "not",
+        "explanation": "非；将判断结果取反"
+    },
+    {
+        "word": "for",
+        "explanation": "循环；按顺序重复处理数据"
+    },
+    {
+        "word": "while",
+        "explanation": "循环；条件成立时重复执行"
+    },
+    {
+        "word": "loop",
+        "explanation": "循环；重复执行一段代码"
+    },
+    {
+        "word": "range",
+        "explanation": "范围；生成一组连续数字"
+    },
+    {
+        "word": "repeat",
+        "explanation": "重复；多次执行相同操作"
+    },
+    {
+        "word": "break",
+        "explanation": "跳出；立即结束当前循环"
+    },
+    {
+        "word": "continue",
+        "explanation": "继续；跳过本次循环"
+    },
+    {
+        "word": "count",
+        "explanation": "计数；统计数量或次数"
+    },
+    {
+        "word": "step",
+        "explanation": "步长；控制数字每次变化多少"
+    },
+    {
+        "word": "function",
+        "explanation": "函数；封装一段可以重复使用的代码"
+    },
+    {
+        "word": "def",
+        "explanation": "定义函数；Python 创建函数的关键字"
+    },
+    {
+        "word": "return",
+        "explanation": "返回；把函数处理结果送回去"
+    },
+    {
+        "word": "parameter",
+        "explanation": "参数；函数接收的数据"
+    },
+    {
+        "word": "argument",
+        "explanation": "实参；调用函数时传入的数据"
+    },
+    {
+        "word": "call",
+        "explanation": "调用；执行一个函数"
+    },
+    {
+        "word": "result",
+        "explanation": "结果；程序处理后得到的数据"
+    },
+    {
+        "word": "class",
+        "explanation": "类；描述一类对象的结构和功能"
+    },
+    {
+        "word": "object",
+        "explanation": "对象；根据类创建出的具体实例"
+    },
+    {
+        "word": "self",
+        "explanation": "自身；表示当前对象"
+    },
+    {
+        "word": "method",
+        "explanation": "方法；属于对象或类的函数"
+    },
+    {
+        "word": "property",
+        "explanation": "属性；保存对象自身的数据"
+    },
+    {
+        "word": "import",
+        "explanation": "导入；使用其他模块中的功能"
+    },
+    {
+        "word": "module",
+        "explanation": "模块；保存 Python 代码的功能文件"
+    },
+    {
+        "word": "package",
+        "explanation": "包；组织多个 Python 模块"
+    },
+    {
+        "word": "library",
+        "explanation": "库；提供可以直接使用的功能"
+    },
+    {
+        "word": "random",
+        "explanation": "随机；生成随机数据或随机选择"
+    },
+    {
+        "word": "time",
+        "explanation": "时间；处理等待和时间相关功能"
+    },
+    {
+        "word": "math",
+        "explanation": "数学；提供数学计算功能"
+    },
+    {
+        "word": "append",
+        "explanation": "追加；向列表末尾添加元素"
+    },
+    {
+        "word": "remove",
+        "explanation": "删除；移除指定的数据"
+    },
+    {
+        "word": "insert",
+        "explanation": "插入；在指定位置添加元素"
+    },
+    {
+        "word": "sort",
+        "explanation": "排序；按照顺序排列数据"
+    },
+    {
+        "word": "reverse",
+        "explanation": "反转；将数据顺序倒过来"
+    },
+    {
+        "word": "length",
+        "explanation": "长度；表示数据中元素的数量"
+    },
+    {
+        "word": "len",
+        "explanation": "获取长度；统计字符串或列表长度"
+    },
+    {
+        "word": "max",
+        "explanation": "最大值；找到数据中的最大数字"
+    },
+    {
+        "word": "min",
+        "explanation": "最小值；找到数据中的最小数字"
+    },
+    {
+        "word": "sum",
+        "explanation": "求和；计算一组数字的总和"
+    },
+    {
+        "word": "open",
+        "explanation": "打开；打开文件进行读写"
+    },
+    {
+        "word": "read",
+        "explanation": "读取；从文件中获得数据"
+    },
+    {
+        "word": "file",
+        "explanation": "文件；保存程序或数据"
+    },
+    {
+        "word": "path",
+        "explanation": "路径；表示文件所在的位置"
+    },
+    {
+        "word": "save",
+        "explanation": "保存；将数据存储起来"
+    },
+    {
+        "word": "load",
+        "explanation": "加载；读取已经保存的数据"
+    },
+    {
+        "word": "error",
+        "explanation": "错误；程序运行时出现的问题"
+    },
+    {
+        "word": "bug",
+        "explanation": "程序问题；代码中的错误或异常行为"
+    },
+    {
+        "word": "debug",
+        "explanation": "调试；寻找并解决程序问题"
+    },
+    {
+        "word": "syntax",
+        "explanation": "语法；编写代码必须遵守的规则"
+    },
+    {
+        "word": "exception",
+        "explanation": "异常；程序运行过程中发生的错误"
+    },
+    {
+        "word": "try",
+        "explanation": "尝试；用于捕获可能出现的异常"
+    },
+    {
+        "word": "except",
+        "explanation": "异常处理；出现错误时执行"
+    },
+    {
+        "word": "code",
+        "explanation": "代码；编写给计算机执行的指令"
+    },
+    {
+        "word": "program",
+        "explanation": "程序；由代码组成的完整功能"
+    },
+    {
+        "word": "run",
+        "explanation": "运行；让计算机执行程序"
+    },
+    {
+        "word": "algorithm",
+        "explanation": "算法；解决问题的步骤和方法"
+    },
+    {
+        "word": "logic",
+        "explanation": "逻辑；程序处理问题的规则"
+    },
+    {
+        "word": "sequence",
+        "explanation": "顺序；代码按照先后依次执行"
+    },
+    {
+        "word": "event",
+        "explanation": "事件；触发程序执行某个操作"
+    },
+    {
+        "word": "command",
+        "explanation": "命令；告诉计算机执行某项操作"
+    },
+    {
+        "word": "output",
+        "explanation": "输出；程序处理后显示的结果"
+    },
+    {
+        "word": "AI",
+        "explanation": "人工智能；让计算机完成智能任务"
+    },
+    {
+        "word": "model",
+        "explanation": "模型；AI 学习后形成的计算系统"
+    },
+    {
+        "word": "train",
+        "explanation": "训练；让 AI 从数据中学习"
+    },
+    {
+        "word": "training",
+        "explanation": "训练过程；使用数据训练 AI 模型"
+    },
+    {
+        "word": "dataset",
+        "explanation": "数据集；用于训练或测试 AI 的数据"
+    },
+    {
+        "word": "sample",
+        "explanation": "样本；数据集中的一条数据"
+    },
+    {
+        "word": "label",
+        "explanation": "标签；表示样本对应的正确类别"
+    },
+    {
+        "word": "feature",
+        "explanation": "特征；描述数据特点的信息"
+    },
+    {
+        "word": "predict",
+        "explanation": "预测；让 AI 根据数据给出结果"
+    },
+    {
+        "word": "prediction",
+        "explanation": "预测结果；AI 计算得到的答案"
+    },
+    {
+        "word": "image",
+        "explanation": "图像；AI 可以识别和处理的图片数据"
+    },
+    {
+        "word": "text",
+        "explanation": "文本；由文字组成的数据"
+    },
+    {
+        "word": "audio",
+        "explanation": "音频；声音类型的数据"
+    },
+    {
+        "word": "voice",
+        "explanation": "语音；人说话产生的声音数据"
+    },
+    {
+        "word": "camera",
+        "explanation": "摄像头；采集图像和视频数据"
+    },
+    {
+        "word": "sensor",
+        "explanation": "传感器；采集环境中的信息"
+    },
+    {
+        "word": "recognition",
+        "explanation": "识别；让 AI 判断内容是什么"
+    },
+    {
+        "word": "classify",
+        "explanation": "分类；把数据分到不同类别"
+    },
+    {
+        "word": "classification",
+        "explanation": "分类任务；判断数据属于哪一类"
+    },
+    {
+        "word": "detect",
+        "explanation": "检测；寻找图片或数据中的目标"
+    },
+    {
+        "word": "detection",
+        "explanation": "检测任务；识别目标及其位置"
+    },
+    {
+        "word": "generate",
+        "explanation": "生成；让 AI 创建新的内容"
+    },
+    {
+        "word": "chat",
+        "explanation": "对话；与 AI 进行文字交流"
+    },
+    {
+        "word": "prompt",
+        "explanation": "提示词；告诉 AI 要完成什么任务"
+    },
+    {
+        "word": "response",
+        "explanation": "回复；AI 根据输入生成的回答"
+    },
+    {
+        "word": "token",
+        "explanation": "词元；AI 处理文本时使用的基本单位"
+    },
+    {
+        "word": "machine",
+        "explanation": "机器；执行程序和任务的设备"
+    },
+    {
+        "word": "learning",
+        "explanation": "学习；AI 从数据中发现规律"
+    },
+    {
+        "word": "network",
+        "explanation": "网络；连接设备或组成神经网络结构"
+    },
+    {
+        "word": "neuron",
+        "explanation": "神经元；神经网络中的基本计算单元"
+    },
+    {
+        "word": "layer",
+        "explanation": "层；神经网络中的一组计算结构"
+    },
+    {
+        "word": "accuracy",
+        "explanation": "准确率；模型预测正确的比例"
+    },
+    {
+        "word": "loss",
+        "explanation": "损失；表示模型预测与正确答案的差距"
+    },
+    {
+        "word": "test",
+        "explanation": "测试；检查程序或模型效果"
+    },
+    {
+        "word": "robot",
+        "explanation": "机器人；通过程序控制的智能设备"
+    },
+    {
+        "word": "move",
+        "explanation": "移动；控制角色或机器人改变位置"
+    },
+    {
+        "word": "turn",
+        "explanation": "转向；改变移动方向"
+    },
+    {
+        "word": "angle",
+        "explanation": "角度；表示旋转或方向大小"
+    },
+    {
+        "word": "coordinate",
+        "explanation": "坐标；使用数字表示对象的位置"
+    },
+    {
+        "word": "button",
+        "explanation": "按钮；点击后触发程序功能"
+    },
+    {
+        "word": "click",
+        "explanation": "点击；使用鼠标触发操作"
+    },
+    {
+        "word": "keyboard",
+        "explanation": "键盘；输入文字和控制程序的设备"
+    },
+    {
+        "word": "turtle",
+        "explanation": "海龟绘图；Python 中常用的图形化编程模块"
+    },
+    {
+        "word": "forward",
+        "explanation": "前进；让海龟向当前方向移动"
+    },
+    {
+        "word": "backward",
+        "explanation": "后退；让海龟向后移动"
+    },
+    {
+        "word": "left",
+        "explanation": "左转；让海龟向左旋转"
+    },
+    {
+        "word": "right",
+        "explanation": "右转；让海龟向右旋转"
+    },
+    {
+        "word": "goto",
+        "explanation": "移动到；让海龟前往指定坐标"
+    },
+    {
+        "word": "setpos",
+        "explanation": "设置位置；让海龟移动到指定坐标"
+    },
+    {
+        "word": "setx",
+        "explanation": "设置横坐标；改变海龟的 x 坐标"
+    },
+    {
+        "word": "sety",
+        "explanation": "设置纵坐标；改变海龟的 y 坐标"
+    },
+    {
+        "word": "home",
+        "explanation": "回到原点；让海龟返回中心位置"
+    },
+    {
+        "word": "position",
+        "explanation": "位置；获取海龟当前坐标"
+    },
+    {
+        "word": "heading",
+        "explanation": "朝向；获取海龟当前方向角度"
+    },
+    {
+        "word": "setheading",
+        "explanation": "设置朝向；让海龟转到指定角度"
+    },
+    {
+        "word": "penup",
+        "explanation": "抬笔；移动时不留下线条"
+    },
+    {
+        "word": "pendown",
+        "explanation": "落笔；移动时绘制线条"
+    },
+    {
+        "word": "pensize",
+        "explanation": "画笔粗细；设置线条宽度"
+    },
+    {
+        "word": "width",
+        "explanation": "线宽；设置画笔绘制线条的粗细"
+    },
+    {
+        "word": "pencolor",
+        "explanation": "画笔颜色；设置线条颜色"
+    },
+    {
+        "word": "color",
+        "explanation": "颜色；设置画笔和填充颜色"
+    },
+    {
+        "word": "fillcolor",
+        "explanation": "填充颜色；设置图形内部颜色"
+    },
+    {
+        "word": "begin_fill",
+        "explanation": "开始填充；标记填充图形的起点"
+    },
+    {
+        "word": "end_fill",
+        "explanation": "结束填充；完成图形内部填色"
+    },
+    {
+        "word": "circle",
+        "explanation": "画圆；绘制圆形或圆弧"
+    },
+    {
+        "word": "dot",
+        "explanation": "画点；绘制一个圆点"
+    },
+    {
+        "word": "stamp",
+        "explanation": "盖章；在当前位置留下海龟图形"
+    },
+    {
+        "word": "clear",
+        "explanation": "清除；删除当前海龟画出的内容"
+    },
+    {
+        "word": "reset",
+        "explanation": "重置；清除画面并恢复初始状态"
+    },
+    {
+        "word": "undo",
+        "explanation": "撤销；取消上一步绘图操作"
+    },
+    {
+        "word": "speed",
+        "explanation": "速度；设置海龟绘图和移动速度"
+    },
+    {
+        "word": "shape",
+        "explanation": "形状；设置海龟显示的图案"
+    },
+    {
+        "word": "shapesize",
+        "explanation": "形状大小；调整海龟图形的尺寸"
+    },
+    {
+        "word": "showturtle",
+        "explanation": "显示海龟；让海龟图形可见"
+    },
+    {
+        "word": "hideturtle",
+        "explanation": "隐藏海龟；让海龟图形不可见"
+    },
+    {
+        "word": "screen",
+        "explanation": "画布；表示 Turtle 绘图窗口"
+    },
+    {
+        "word": "setup",
+        "explanation": "设置窗口；调整绘图窗口大小"
+    },
+    {
+        "word": "screensize",
+        "explanation": "画布大小；设置 Turtle 绘图区尺寸"
+    },
+    {
+        "word": "bgcolor",
+        "explanation": "背景颜色；设置绘图窗口颜色"
+    },
+    {
+        "word": "bgpic",
+        "explanation": "背景图片；设置绘图窗口背景图"
+    },
+    {
+        "word": "title",
+        "explanation": "标题；设置 Turtle 窗口标题"
+    },
+    {
+        "word": "tracer",
+        "explanation": "刷新控制；控制绘图动画是否逐步显示"
+    },
+    {
+        "word": "update",
+        "explanation": "刷新画面；立即更新 Turtle 绘图结果"
+    },
+    {
+        "word": "write",
+        "explanation": "写文字；在画布上显示文本"
+    },
+    {
+        "word": "font",
+        "explanation": "字体；设置文字的字体、大小和样式"
+    },
+    {
+        "word": "align",
+        "explanation": "对齐；设置文字的左、中、右对齐方式"
+    },
+    {
+        "word": "onclick",
+        "explanation": "点击事件；点击海龟时执行函数"
+    },
+    {
+        "word": "onkey",
+        "explanation": "按键事件；按下指定按键时执行函数"
+    },
+    {
+        "word": "onkeypress",
+        "explanation": "按键事件；按下键盘按键时执行函数"
+    },
+    {
+        "word": "onrelease",
+        "explanation": "松键事件；松开键盘按键时执行函数"
+    },
+    {
+        "word": "listen",
+        "explanation": "监听；让窗口开始接收键盘事件"
+    },
+    {
+        "word": "ontimer",
+        "explanation": "定时执行；等待指定时间后运行函数"
+    },
+    {
+        "word": "mainloop",
+        "explanation": "事件循环；保持 Turtle 窗口持续运行"
+    },
+    {
+        "word": "done",
+        "explanation": "结束设置；让 Turtle 窗口保持显示"
+    },
+    {
+        "word": "xcor",
+        "explanation": "横坐标；获取海龟当前 x 坐标"
+    },
+    {
+        "word": "ycor",
+        "explanation": "纵坐标；获取海龟当前 y 坐标"
+    },
+    {
+        "word": "distance",
+        "explanation": "距离；计算海龟与目标位置之间的距离"
+    },
+    {
+        "word": "towards",
+        "explanation": "目标方向；计算朝向指定位置的角度"
+    }
+]

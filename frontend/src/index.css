@@ -1,0 +1,385 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    background: #f8f8f0;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    color: #5f4c34;
+    user-select: none;
+}
+
+html,
+body,
+body * {
+    cursor: var(--island-cursor) !important;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.app-shell {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: clamp(24px, 4vh, 42px);
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 24px clamp(16px, 4vw, 52px) 118px;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.9) 0 7%, transparent 8%),
+        linear-gradient(180deg, #bfeaf2 0%, #dbf3d2 54%, #f7e3a0 54%, #f8d789 100%);
+}
+
+.app-shell::before {
+    position: absolute;
+    inset-inline: -5%;
+    content: "";
+    pointer-events: none;
+}
+
+.app-shell::before {
+    bottom: 0;
+    height: 30vh;
+    background:
+        radial-gradient(ellipse at 20% 100%, #7fc56f 0 36%, transparent 37%),
+        radial-gradient(ellipse at 75% 96%, #6bbf86 0 34%, transparent 35%),
+        linear-gradient(180deg, transparent 0 16%, #8ccf72 17% 100%);
+}
+
+.hero,
+.game-board {
+    position: relative;
+    z-index: 2;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    width: min(1240px, 100%);
+    margin: 0 auto;
+}
+
+.hero__copy {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+}
+
+.challenge-header p {
+    max-width: 620px;
+    margin: 0;
+    font-size: clamp(16px, 2.2vw, 20px);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.hero__copy [class*="animal-title"],
+.challenge-header [class*="animal-title"] {
+    width: fit-content;
+    max-width: 100%;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    gap: 10px;
+    min-width: 240px;
+}
+
+.hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.wallet-star {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 0 rgba(114, 93, 66, 0.18));
+}
+
+.wallet-tooltip-target {
+    display: inline-flex;
+}
+
+.game-board {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+}
+
+.challenge-card {
+    display: grid;
+}
+
+.challenge-card>div {
+    width: 100%;
+}
+
+.challenge-card [class*="animal-tabs"] {
+    border: 2px solid #e8e2d6;
+    border-radius: 24px;
+    background: #f8f8f0;
+    overflow: visible;
+}
+
+.challenge-card [class*="animal-tabList"] {
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 14px 16px;
+    border-bottom: 2px solid #e8e2d6;
+    border-radius: 22px 22px 0 0;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.challenge-card [class*="animal-tabContent"] {
+    padding: clamp(14px, 1.8vw, 20px) clamp(22px, 2.6vw, 32px) clamp(18px, 2vw, 24px);
+    position: relative;
+    overflow: visible;
+    border-radius: 0 0 22px 22px;
+    background: #f8f8f0;
+}
+
+.challenge-card [class*="animal-tabContentInner"] {
+    min-height: 0;
+    overflow: visible;
+}
+
+.challenge-panel {
+    display: grid;
+    gap: 10px;
+}
+
+.challenge-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+}
+
+.challenge-header>div:first-child {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+}
+
+.challenge-header p {
+    color: #6b5b42;
+    font-size: clamp(15px, 1.8vw, 18px);
+    line-height: 1.45;
+}
+
+.score-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 29px;
+}
+
+.word-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    min-height: 132px;
+    overflow: visible;
+    padding: 10px 0 4px;
+    border: 0;
+    border-radius: 0;
+    background:
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(130, 213, 187, 0.13) 31px 33px);
+}
+
+.word-wrap {
+    display: inline-flex;
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.word-wrap:hover {
+    z-index: 20;
+}
+
+.word-wrap [class*="animal-tooltip-"] {
+    z-index: 5000;
+}
+
+.word {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    max-width: 100%;
+    padding: 3px 10px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-family: "Nunito", "Noto Sans SC", system-ui, sans-serif;
+    font-size: clamp(15px, 1.55vw, 18px);
+    font-weight: 900;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+    transition: transform 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.word--current {
+    color: #5a492f;
+    border-color: #f5c31c;
+    background: #fff5b9;
+    box-shadow: 0 3px 0 rgba(146, 107, 34, 0.18);
+    transform: translateY(-2px);
+}
+
+.word--pending {
+    color: #6c5a40;
+    background: rgba(247, 243, 223, 0.86);
+}
+
+.word--correct {
+    color: #245f35;
+    background: #dff3bf;
+}
+
+.word--wrong {
+    color: #fff;
+    background: #e05a5a;
+}
+
+.typing-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 8px;
+    padding-top: 2px;
+}
+
+.result-panel {
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+    text-align: center;
+}
+
+.result-panel img {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+}
+
+.result-panel p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.55;
+}
+
+.help-panel {
+    display: grid;
+    gap: 10px;
+}
+
+.help-answer {
+    color: #6b5b42;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.6;
+}
+
+.leaderboard-player {
+    display: inline-flex;
+    align-items: center;
+    max-width: min(38vw, 260px);
+    gap: 6px;
+    vertical-align: bottom;
+}
+
+.leaderboard-name {
+    display: block;
+    min-width: 0;
+    max-width: min(34vw, 220px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.leaderboard-me {
+    flex: 0 0 auto;
+    color: #0b9f95;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.app-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    background: #19c8b9;
+}
+
+@media (max-width: 760px) {
+    .app-shell {
+        align-content: start;
+        padding: 16px 12px 112px;
+    }
+
+    .hero {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hero__actions {
+        justify-content: flex-start;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .challenge-header {
+        grid-template-columns: 1fr;
+    }
+
+    .typing-row {
+        grid-template-columns: 1fr;
+    }
+
+    .typing-row button {
+        width: 100%;
+    }
+
+    .word-cloud {
+        min-height: 190px;
+        max-height: 38vh;
+        padding: 12px;
+    }
+}
