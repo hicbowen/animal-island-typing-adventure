@@ -331,7 +331,7 @@ export default function App() {
                         {activeChallenge.title}
                     </Title>
                 </div>
-                <Tooltip variant="island" title="加油，攒更多星星吧！" placement="left">
+                <Tooltip variant="island" title="加油，攒更多星星吧！" placement="top">
                     <span className="wallet-tooltip-target">
                         <Wallet value={player.score} size="small" />
                     </span>
