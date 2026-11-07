@@ -11,7 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "animal-island-ui": "^1.2.0",
+    "animal-island-ui": "^3.0.1",
+    "naive-icons": "^1.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "uuid": "^11.1.0"

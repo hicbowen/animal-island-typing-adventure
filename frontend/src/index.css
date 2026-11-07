@@ -17,12 +17,6 @@ body {
     user-select: none;
 }
 
-html,
-body,
-body * {
-    cursor: var(--island-cursor) !important;
-}
-
 button,
 input {
     font: inherit;
@@ -111,15 +105,25 @@ input {
     gap: 10px;
 }
 
-.wallet-star {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-    filter: drop-shadow(0 3px 0 rgba(114, 93, 66, 0.18));
-}
-
 .wallet-tooltip-target {
     display: inline-flex;
+}
+
+.star-balance {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border: 2px solid #e8dcc8;
+    border-radius: 999px;
+    background: #fffbe7;
+    color: #725d42;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.star-balance svg {
+    color: #e6a600;
 }
 
 .game-board {
@@ -219,6 +223,10 @@ input {
         repeating-linear-gradient(0deg, transparent 0 31px, rgba(130, 213, 187, 0.13) 31px 33px);
 }
 
+.challenge-empty {
+    width: 100%;
+}
+
 .word-wrap {
     display: inline-flex;
     min-width: 0;
@@ -289,10 +297,10 @@ input {
     text-align: center;
 }
 
-.result-panel img {
+.result-panel > svg {
     width: 88px;
     height: 88px;
-    object-fit: contain;
+    color: #e6a600;
 }
 
 .result-panel p {
@@ -322,6 +330,14 @@ input {
     vertical-align: bottom;
 }
 
+.leaderboard-avatar {
+    flex: 0 0 auto;
+}
+
+.leaderboard-loading {
+    padding: 12px 4px;
+}
+
 .leaderboard-name {
     display: block;
     min-width: 0;
@@ -344,7 +360,20 @@ input {
     bottom: 0;
     left: 0;
     z-index: 1;
+    height: 88px;
+    background: linear-gradient(180deg, #65c8db 0%, #3ba9c4 100%);
     pointer-events: none;
+}
+
+.app-footer::before {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    height: 24px;
+    content: "";
+    background: radial-gradient(50px 24px at 50px 24px, #65c8db 99%, transparent 100%) repeat-x;
+    background-size: 100px 24px;
 }
 
 ::-webkit-scrollbar {

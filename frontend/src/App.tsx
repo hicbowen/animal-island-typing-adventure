@@ -1,27 +1,30 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
+    Avatar,
     Button,
     Collapse,
+    CountUp,
     Drawer,
-    Footer,
-    Icon,
     Input,
     Modal,
+    NoData,
     Notification,
     Progress,
+    Skeleton,
     Table,
     Tabs,
     Tag,
     Title,
     Tooltip,
-    Wallet,
     type TableColumn,
     type TabItem,
 } from "animal-island-ui";
+import { MapIcon, ScoreboardIcon, StarIcon, TrophyIcon } from "naive-icons";
 import { v4 as uuidv4 } from "uuid";
-import trophyPrize from "animal-island-ui/items/item-106.png";
 
 type ChallengeMode = "beach" | "forest" | "volcano" | "symbols";
+type ChallengeStatus = "loading" | "ready" | "empty" | "error";
+type LeaderboardStatus = "idle" | "loading" | "ready" | "error";
 
 interface Player extends Record<string, unknown> {
     uuid: string;
@@ -107,7 +110,7 @@ export default function App() {
     const [inputValue, setInputValue] = useState("");
     const [submittedWords, setSubmittedWords] = useState<string[]>([]);
     const [hasInputError, setHasInputError] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [challengeStatus, setChallengeStatus] = useState<ChallengeStatus>("loading");
     const [player, setPlayer] = useState<Player>(emptyPlayer);
     const [nameInput, setNameInput] = useState("");
     const [roundScore, setRoundScore] = useState(0);
@@ -115,33 +118,47 @@ export default function App() {
     const [helpOpen, setHelpOpen] = useState(false);
     const [leaderboardOpen, setLeaderboardOpen] = useState(false);
     const [leaderboard, setLeaderboard] = useState<Player[]>([]);
+    const [leaderboardStatus, setLeaderboardStatus] = useState<LeaderboardStatus>("idle");
+    const challengeRequestId = useRef(0);
+    const leaderboardRequestId = useRef(0);
 
     const activeChallenge = useMemo(
         () => challenges.find((challenge) => challenge.key === mode) ?? challenges[0],
         [mode],
     );
     const currentWordIndex = submittedWords.length;
-    const currentWord = words[currentWordIndex]?.word ?? "";
+    const currentWord = challengeStatus === "ready" ? words[currentWordIndex]?.word ?? "" : "";
     const progressPercent = words.length ? (submittedWords.length / words.length) * 100 : 0;
     const liveScore = submittedWords.filter((word, index) => word === words[index]?.word).length;
     const totalAfterRound = player.score + roundScore;
+    const challengeHasError = challengeStatus === "error" || hasInputError;
+    const challengeHint = challengeStatus === "loading"
+        ? "正在准备"
+        : challengeStatus === "error"
+            ? "连接失败"
+            : challengeStatus === "empty"
+                ? "暂无词语"
+                : hasInputError ? "有个字母跑偏了" : "准备出发";
 
     const fetchLeaderboard = async () => {
+        const requestId = ++leaderboardRequestId.current;
+        setLeaderboardStatus("loading");
         try {
             const data = await fetch("/api/score").then((response) => safeJson<Player[]>(response));
+            if (requestId !== leaderboardRequestId.current) return;
             setLeaderboard(data);
+            setLeaderboardStatus("ready");
         } catch (error) {
+            if (requestId !== leaderboardRequestId.current) return;
             console.error("Failed to fetch leaderboard:", error);
-            Notification.error({
-                message: "排行榜迷路了",
-                description: "稍后再打开看看。",
-                position: "topRight",
-            });
+            setLeaderboardStatus("error");
         }
     };
 
     const fetchChallenge = async (challenge: Challenge) => {
-        setIsLoading(true);
+        const requestId = ++challengeRequestId.current;
+        setChallengeStatus("loading");
+        setWords([]);
         setInputValue("");
         setSubmittedWords([]);
         setHasInputError(false);
@@ -150,23 +167,20 @@ export default function App() {
         try {
             const endpoint =
                 challenge.kind === "symbols" ? "/api/symbols" : `/api/words?num=${challenge.count}`;
+            let nextWords: PromptItem[];
             if (challenge.kind === "symbols") {
                 const data = await fetch(endpoint).then((response) => safeJson<string[]>(response));
-                setWords(data.map((symbol) => ({ word: symbol })));
+                nextWords = data.map((symbol) => ({ word: symbol }));
             } else {
-                const data = await fetch(endpoint).then((response) => safeJson<PromptItem[]>(response));
-                setWords(data);
+                nextWords = await fetch(endpoint).then((response) => safeJson<PromptItem[]>(response));
             }
+            if (requestId !== challengeRequestId.current) return;
+            setWords(nextWords);
+            setChallengeStatus(nextWords.length ? "ready" : "empty");
         } catch (error) {
+            if (requestId !== challengeRequestId.current) return;
             console.error("Failed to fetch challenge:", error);
-            setWords([]);
-            Notification.error({
-                message: "关卡暂时打不开",
-                description: "请检查后端服务是否在 8087 端口运行。",
-                position: "topRight",
-            });
-        } finally {
-            setIsLoading(false);
+            setChallengeStatus("error");
         }
     };
 
@@ -208,6 +222,7 @@ export default function App() {
                 const isCurrentPlayer = record.uuid === player.uuid;
                 return (
                     <span className="leaderboard-player" title={isCurrentPlayer ? `${fullName} (我)` : fullName}>
+                        <Avatar size="small" className="leaderboard-avatar">{fullName.slice(0, 1)}</Avatar>
                         <span className="leaderboard-name">{formatPlayerName(fullName)}</span>
                         {isCurrentPlayer ? <span className="leaderboard-me">(我)</span> : null}
                     </span>
@@ -223,6 +238,7 @@ export default function App() {
     ];
 
     const handleModeChange = (key: string) => {
+        setChallengeStatus("loading");
         setMode(key as ChallengeMode);
     };
 
@@ -303,7 +319,6 @@ export default function App() {
 
         try {
             await saveScore(nextPlayer);
-            await fetchLeaderboard();
             Notification.success({
                 message: "星星已经存进排行榜",
                 position: "topRight",
@@ -333,7 +348,10 @@ export default function App() {
                 </div>
                 <Tooltip variant="island" title="加油，攒更多星星吧！" placement="top">
                     <span className="wallet-tooltip-target">
-                        <Wallet value={player.score} size="small" />
+                        <span className="star-balance" aria-label={`累计 ${player.score} 颗星星`}>
+                            <StarIcon size={24} aria-hidden="true" />
+                            <span>{player.score}</span>
+                        </span>
                     </span>
                 </Tooltip>
             </div>
@@ -345,21 +363,30 @@ export default function App() {
                 <Tag color="app-green" variant="outlined">
                     已完成 {submittedWords.length}/{words.length || activeChallenge.count}
                 </Tag>
-                <Tag color={hasInputError ? "app-red" : "app-yellow"} variant={hasInputError ? "solid" : "outlined"}>
-                    {hasInputError ? "有个字母跑偏了" : "准备出发"}
+                <Tag color={challengeHasError ? "app-red" : "app-yellow"} variant={challengeHasError ? "solid" : "outlined"}>
+                    {challengeHint}
                 </Tag>
             </div>
 
             <Progress
                 percent={progressPercent}
                 size="large"
-                infoPosition="inside"
+                wave={mode === "beach"}
+                aria-label="本局进度"
                 infoFormat={() => `${submittedWords.length}/${words.length || activeChallenge.count}`}
             />
 
             <div className="word-cloud" aria-live="polite">
-                {isLoading ? (
+                {challengeStatus === "loading" ? (
                     <span className="word word--pending">正在铺好小路...</span>
+                ) : challengeStatus === "error" || challengeStatus === "empty" ? (
+                    <NoData
+                        className="challenge-empty"
+                        size="small"
+                        title={challengeStatus === "error" ? "关卡暂时打不开" : "这条小路暂时没有词"}
+                        description={challengeStatus === "error" ? "请检查连接后重试。" : "再取一组词试试吧。"}
+                        extra={<Button type="primary" onClick={() => fetchChallenge(activeChallenge)}>重试获取</Button>}
+                    />
                 ) : (
                     words.map((word, index) => {
                         const state =
@@ -399,7 +426,8 @@ export default function App() {
                     size="large"
                     status={hasInputError ? "error" : undefined}
                     value={inputValue}
-                    placeholder={currentWord || "点击刷新开始"}
+                    disabled={!currentWord}
+                    placeholder={currentWord || (challengeStatus === "loading" ? "正在加载..." : "请先获取词语")}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                     onClear={() => {
@@ -410,9 +438,11 @@ export default function App() {
                 <Button type="primary" size="large" onClick={submitCurrentWord} disabled={!currentWord}>
                     收集
                 </Button>
-                <Button type="primary" size="large" onClick={() => fetchChallenge(activeChallenge)}>
-                    换一局
-                </Button>
+                {challengeStatus === "ready" ? (
+                    <Button type="primary" size="large" onClick={() => fetchChallenge(activeChallenge)}>
+                        换一局
+                    </Button>
+                ) : null}
             </div>
         </div>
     );
@@ -433,10 +463,10 @@ export default function App() {
                 </div>
                 <div className="hero__actions">
                     <div className="hero__buttons">
-                        <Button type="primary" icon={<Icon name="icon-map" size={22} />} onClick={() => setHelpOpen(true)}>
+                        <Button type="primary" icon={<MapIcon size={22} aria-hidden="true" />} onClick={() => setHelpOpen(true)}>
                             锦囊
                         </Button>
-                        <Button type="primary" icon={<Icon name="icon-critterpedia" size={22} />} onClick={openLeaderboard}>
+                        <Button type="primary" icon={<ScoreboardIcon size={22} aria-hidden="true" />} onClick={openLeaderboard}>
                             排行榜
                         </Button>
                     </div>
@@ -447,9 +477,7 @@ export default function App() {
                 <Tabs items={tabs} activeKey={mode} onChange={handleModeChange} />
             </section>
 
-            <footer className="app-footer">
-                <Footer type="sea" seamless />
-            </footer>
+            <div className="app-footer" aria-hidden="true" />
 
             <Drawer
                 open={helpOpen}
@@ -501,8 +529,9 @@ export default function App() {
                 }
             >
                 <div className="result-panel">
-                    <img src={trophyPrize} alt="" />
-                    <p>本局得到 {roundScore} 颗星星，累计将变成 {totalAfterRound} 颗。</p>
+                    <TrophyIcon size={88} aria-hidden="true" />
+                    <CountUp start={0} end={roundScore} isCounting={resultOpen} duration={1.1} variant="island" size="large" prefix="本局得到 " suffix=" 颗星星" celebrate />
+                    <p>累计将达到 {totalAfterRound} 颗星星。</p>
                     {!player.name ? (
                         <Input
                             size="large"
@@ -528,13 +557,26 @@ export default function App() {
                     </Button>
                 }
             >
-                <Table
-                    columns={leaderboardColumns}
-                    dataSource={leaderboard as Record<string, unknown>[]}
-                    rowKey={(record) => String(record.uuid)}
-                    emptyText="还没有小岛成绩"
-                    scroll={{ y: 560 }}
-                />
+                {leaderboardStatus === "loading" || leaderboardStatus === "idle" ? (
+                    <div className="leaderboard-loading" role="status" aria-label="排行榜加载中">
+                        <Skeleton variant="paragraph" rows={5} active />
+                    </div>
+                ) : leaderboardStatus === "error" ? (
+                    <NoData
+                        title="排行榜暂时打不开"
+                        description="请检查连接后重试。"
+                        extra={<Button type="primary" onClick={fetchLeaderboard}>重试加载</Button>}
+                    />
+                ) : leaderboard.length === 0 ? (
+                    <NoData title="还没有小岛成绩" description="完成一局后，你的星星会出现在这里。" />
+                ) : (
+                    <Table
+                        columns={leaderboardColumns}
+                        dataSource={leaderboard as Record<string, unknown>[]}
+                        rowKey={(record) => String(record.uuid)}
+                        scroll={{ y: 560 }}
+                    />
+                )}
             </Drawer>
         </main>
     );
